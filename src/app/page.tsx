@@ -1,112 +1,146 @@
-'use client';
-import { useState } from 'react';
-import Navbar from '@/components/layout/Navbar';
-import RestaurantCard from '@/components/ui/RestaurantCard';
-import { restaurants } from '@/data/restaurants';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { ChevronDown } from 'lucide-react';
-import Image from 'next/image';
+'use client'
+
+import Image from "next/image";
+import Link from "next/link";
+import { FaInstagram, FaFacebook, FaTripadvisor } from "react-icons/fa";
+import { motion } from "framer-motion";
+import PortalMain from "@/components/3d/PortalMain";
+
+const restaurants = [
+  {
+    name: "Bairro do Avillez",
+    logo: "/images/bairro_avillez_logo.svg", // Placeholder - Need to find a real one or use text
+    description: "Um bairro atípico onde se cruzam diferentes conceitos de restauração.",
+    link: "/bairro-do-avillez",
+    image: "/images/bairro_avillez_bg.jpg",
+  },
+  {
+    name: "Belcanto",
+    logo: "/images/belcanto_logo.svg",
+    description: "Cozinha portuguesa contemporânea num ambiente sofisticado. Duas estrelas Michelin.",
+    link: "/belcanto",
+    image: "/images/belcanto_bg.jpg",
+  },
+  {
+    name: "Cantinho do Avillez",
+    logo: "/images/cantinho_logo.svg",
+    description: "Cozinha portuguesa de inspiração com influências de viagens.",
+    link: "/cantinho-do-avillez",
+    image: "/images/cantinho_bg.jpg",
+  },
+];
 
 export default function Home() {
-  const [lang] = useState<'pt' | 'en'>('pt');
-  const { scrollY } = useScroll();
-  const y1 = useTransform(scrollY, [0, 500], [0, 150]);
-  
-  const restaurantList = Object.entries(restaurants).map(([key, val]) => ({
-    id: key,
-    ...val
-  }));
-
   return (
-    <main className="bg-[#050505] text-[#f5f5f5] selection:bg-[#D4AF37] selection:text-black font-sans scroll-smooth">
-      <Navbar />
+    <div className="min-h-screen font-sans text-gray-800 bg-[#f8f8f8] selection:bg-red-200">
       
-      {/* Cinematic Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        <motion.div style={{ y: y1 }} className="absolute inset-0 z-0">
-          <Image 
-            src="/images/pateo-hero.jpg" 
-            alt="Bairro do Avillez" 
-            fill 
-            className="object-cover brightness-[0.3] scale-105"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-[#050505]" />
-        </motion.div>
+      {/* 3D Background */}
+      <PortalMain />
+      
+      {/* Header */}
+      <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 bg-white/10 backdrop-blur-md border-b border-white/20">
+        <div className="text-xl font-bold tracking-widest text-white uppercase">
+          José Avillez
+        </div>
+        <nav className="hidden md:flex space-x-8 text-sm font-medium tracking-wide text-white/90">
+             {["Restaurantes", "Sobre", "Livros", "Media", "Contactos"].map((item) => (
+            <Link key={item} href={`/${item.toLowerCase()}`} className="hover:text-red-400 transition-colors">
+              {item}
+            </Link>
+          ))}
+        </nav>
+        <button className="px-5 py-2 text-sm font-semibold text-white bg-red-600 rounded-full hover:bg-red-700 transition shadow-lg hover:shadow-red-500/50">
+          Reservar
+        </button>
+      </header>
 
-        <div className="relative z-10 text-center px-6 max-w-5xl">
-          <motion.div
+      {/* Hero Section */}
+      <section className="relative flex flex-col items-center justify-center h-screen text-center px-4 overflow-hidden">
+        
+        {/* Content Overlay - NO MOTION ON SERVER */}
+        <div className="relative z-10 max-w-4xl space-y-6">
+          <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-5xl md:text-7xl font-light text-white tracking-widest uppercase font-serif"
           >
-            <span className="text-[#D4AF37] text-[10px] uppercase tracking-[0.8em] font-light mb-6 block">
-              José Avillez apresenta
-            </span>
-            <h1 className="text-6xl md:text-[9rem] font-serif leading-none mb-10 text-white tracking-tighter">
-              Bairro do <span className="text-gradient-gold italic">Avillez</span>
-            </h1>
-            <div className="flex flex-col md:flex-row items-center justify-center gap-6 mt-12">
-              <a href="#restaurantes" className="px-10 py-4 bg-[#D4AF37] text-black text-[10px] uppercase tracking-[0.4em] font-bold hover:bg-white transition-all">
-                Explorar Espaços
-              </a>
-              <a href="#conceito" className="text-white/30 hover:text-white transition-colors uppercase text-[10px] tracking-[0.5em] flex items-center gap-2">
-                O Conceito <ChevronDown size={12} />
-              </a>
-            </div>
-          </motion.div>
+            José Avillez
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-lg md:text-xl text-gray-200 font-light max-w-2xl mx-auto italic"
+          >
+            "A cozinha é a minha forma de dar."
+          </motion.p>
         </div>
+
+        {/* Scroll Indicator - NO MOTION ON SERVER */}
+        <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, y: [0, 10, 0] }}
+            transition={{ duration: 2, repeat: Infinity, delay: 1 }}
+            className="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white/50 text-sm tracking-widest"
+        >
+            SCROLL
+        </motion.div>
       </section>
 
-      {/* Collection Grid */}
-      <section id="restaurantes" className="py-32 px-6 bg-[#050505]">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12">
-            {restaurantList.map((r, i) => (
-              <RestaurantCard 
-                key={r.id} 
-                name={r.name[lang]}
-                desc={r.desc[lang]}
-                image={r.image}
-                href={r.href}
-                specialty={r.specialty[lang]}
-                ambiance={r.ambiance[lang]}
-                index={i} 
-              />
-            ))}
-          </div>
+      {/* Restaurantes Grid */}
+      <section className="py-20 px-6 max-w-7xl mx-auto z-20 relative bg-white rounded-t-3xl shadow-2xl mt-[100vh]">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl font-light uppercase tracking-widest mb-4">Nossos Espaços</h2>
+          <div className="w-24 h-1 bg-red-600 mx-auto"></div>
         </div>
-      </section>
 
-      {/* Signature Section */}
-      <section id="conceito" className="py-40 px-6 bg-white text-black">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
-           <div className="space-y-10">
-             <span className="text-[#D4AF37] text-[10px] uppercase tracking-[0.5em] font-bold">Inovação e Tradição</span>
-             <h2 className="text-5xl md:text-8xl font-serif leading-[0.9] tracking-tighter">O sabor da nossa <br/><span className="text-[#D4AF37]">identidade.</span></h2>
-             <p className="text-xl text-black/50 font-light leading-relaxed max-w-md">
-               "A cozinha é a minha forma de comunicar. No Bairro do Avillez, cada prato é uma ponte entre a nossa história e o que ainda vamos descobrir." <br/> <span className="font-bold">— José Avillez.</span>
-             </p>
-             <button className="px-12 py-5 border-2 border-black text-black text-[10px] uppercase tracking-[0.4em] font-bold hover:bg-black hover:text-white transition-all">
-               Conhecer a História
-             </button>
-           </div>
-           <div className="relative h-[700px] rounded-sm overflow-hidden shadow-2xl">
-             <Image 
-                src="/images/pateo-dish.jpg" 
-                alt="José Avillez" 
-                fill 
-                className="object-cover"
-              />
-           </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {restaurants.map((restaurant, index) => (
+            <motion.div
+              key={restaurant.name}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className="group relative overflow-hidden rounded-xl shadow-lg bg-gray-100 aspect-[4/5] hover:shadow-2xl transition-all duration-300"
+            >
+              <div className="absolute inset-0 bg-gray-900/40 group-hover:bg-gray-900/20 transition-all duration-500 z-10"></div>
+                {/* Image Placeholder if actual image fails */}
+                <div className="absolute inset-0 bg-gray-300 flex items-center justify-center text-gray-500">
+                    Image: {restaurant.name}
+                </div>
+
+              <div className="absolute bottom-0 left-0 right-0 p-8 z-20 text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                <h3 className="text-2xl font-bold mb-2">{restaurant.name}</h3>
+                <p className="text-sm text-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100 mb-4">
+                  {restaurant.description}
+                </p>
+                <Link href={restaurant.link} className="inline-block px-6 py-2 border border-white text-white rounded-full hover:bg-white hover:text-gray-900 transition text-sm uppercase tracking-wide">
+                  Descobrir
+                </Link>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="py-32 bg-[#050505] text-center border-t border-white/5">
-         <h2 className="text-3xl font-serif text-white mb-8 tracking-tighter">Bairro do Avillez.</h2>
-         <p className="text-[10px] uppercase tracking-[0.4em] text-white/20">José Avillez Group • Lisboa • 2026</p>
+      <footer className="bg-gray-900 text-white py-12 border-t border-gray-800 z-20 relative">
+        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+          <div className="mb-6 md:mb-0">
+            <span className="text-2xl font-serif tracking-widest">JOSÉ AVILLEZ</span>
+          </div>
+          <div className="flex space-x-6 text-xl">
+            <a href="#" className="hover:text-red-500 transition"><FaInstagram /></a>
+            <a href="#" className="hover:text-blue-500 transition"><FaFacebook /></a>
+            <a href="#" className="hover:text-green-500 transition"><FaTripadvisor /></a>
+          </div>
+        </div>
+          <div className="text-center text-gray-500 text-xs mt-8">
+              &copy; {new Date().getFullYear()} Grupo José Avillez. Todos os direitos reservados.
+          </div>
       </footer>
-    </main>
+    </div>
   );
 }
