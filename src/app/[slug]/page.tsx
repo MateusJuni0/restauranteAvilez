@@ -2,7 +2,7 @@
 
 import { useParams, useRouter } from 'next/navigation';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ChevronLeft, Calendar, MapPin, Phone, Info, Instagram } from 'lucide-react';
+import { ChevronLeft, MapPin, Phone } from 'lucide-react';
 import { restaurants } from '@/data/restaurants';
 import DigitalMenu from '@/components/ui/DigitalMenu';
 import Image from 'next/image';
