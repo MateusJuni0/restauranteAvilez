@@ -29,7 +29,7 @@ function ParticleSystem({ color = "#D4AF37" }) {
   });
 
   return (
-    <Points ref={ref} positions={positions} stride={3} frustumCulled={false}>
+    <Points positions={positions} stride={3} frustumCulled={false}>
       <PointMaterial
         transparent
         color={color}
