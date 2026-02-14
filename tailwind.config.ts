@@ -14,13 +14,23 @@ const config: Config = {
       backdropBlur: { xs: '2px' },
       animation: {
         'float': 'float 6s ease-in-out infinite',
+        'ken-burns': 'ken-burns 20s ease-in-out infinite alternate',
       },
       keyframes: {
         float: {
           '0%, 100%': { transform: 'translateY(0px)' },
           '50%': { transform: 'translateY(-20px)' },
+        },
+        'ken-burns': {
+          '0%': { transform: 'scale(1)' },
+          '100%': { transform: 'scale(1.1)' },
         }
-      }
+      },
+      fontFamily: {
+        sans: ['var(--font-inter)', 'sans-serif'],
+        serif: ['var(--font-serif)', 'serif'],
+        outfit: ['var(--font-outfit)', 'sans-serif'],
+      },
     },
   },
   plugins: [],
