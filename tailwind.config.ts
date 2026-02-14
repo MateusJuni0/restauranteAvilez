@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
+  // Enhanced with Michelin Star Identity
   content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
   darkMode: 'class',
   theme: {
