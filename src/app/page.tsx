@@ -32,7 +32,7 @@ const restaurants = [
 
 export default function Home() {
   return (
-    <div className="min-h-screen font-sans text-gray-800 bg-[#f8f8f8] selection:bg-red-200">
+    <div className="min-h-screen font-sans text-gray-800 bg-transparent selection:bg-red-200">
       
       {/* 3D Background */}
       <PortalMain />
