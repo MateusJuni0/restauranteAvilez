@@ -111,7 +111,7 @@ export default function Home() {
               transition={{ duration: 0.8, delay: index * 0.15 }}
               className="group relative overflow-hidden h-[60vh] md:h-[75vh] w-full border border-white/5 hover:border-[#D4AF37]/30 transition-colors duration-700"
             >
-              <div className=\"absolute inset-0 bg-[#050505] transition-transform duration-[2s] ease-out group-hover:scale-110\">
+              <div className="absolute inset-0 bg-[#050505] transition-transform duration-[2s] ease-out group-hover:scale-110">
                  <div 
                     className="w-full h-full bg-cover bg-center opacity-50 group-hover:opacity-30 transition-all duration-1000"
                     style={{ backgroundImage: `url('${restaurant.image}')` }} 
