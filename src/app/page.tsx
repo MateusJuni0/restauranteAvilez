@@ -113,22 +113,22 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 1.2 }}
-            className="text-lg md:text-2xl text-gray-300 font-light max-w-3xl mx-auto font-sans tracking-wide leading-relaxed"
+            className="text-base md:text-2xl text-gray-300 font-light max-w-xl md:max-w-3xl mx-auto font-sans tracking-wide leading-relaxed px-4"
           >
             "A cozinha é a minha forma de dar."
           </motion.p>
         </div>
 
-        {/* Scroll Indicator */}
+        {/* Scroll Indicator - Perfect Center Fix */}
         <motion.div 
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1, y: [0, 10, 0] }}
+            animate={{ opacity: 1, y: [0, 8, 0] }}
             transition={{ duration: 2.5, repeat: Infinity, delay: 3 }}
-            className="absolute bottom-16 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-6 cursor-pointer group"
+            className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-4 cursor-pointer group z-30"
             onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
         >
-            <span className="text-[#D4AF37]/70 text-[9px] tracking-[0.5em] uppercase group-hover:text-[#D4AF37] transition-colors duration-500">Descobrir</span>
-            <div className="w-[1px] h-24 bg-gradient-to-b from-transparent via-[#D4AF37]/50 to-transparent group-hover:via-[#D4AF37] transition-all duration-700"></div>
+            <span className="text-[#D4AF37]/70 text-[9px] tracking-[0.4em] uppercase group-hover:text-[#D4AF37] transition-colors duration-500 font-medium">Descobrir</span>
+            <div className="w-[1px] h-16 bg-gradient-to-b from-transparent via-[#D4AF37]/40 to-transparent group-hover:via-[#D4AF37] transition-all duration-700"></div>
         </motion.div>
       </section>
 
@@ -227,11 +227,13 @@ export default function Home() {
             
             <div className="pt-8 border-t border-white/5">
               <h5 className="text-[10px] font-bold tracking-[0.3em] text-[#D4AF37] uppercase mb-6">Newsletter Exclusiva</h5>
+          {/* Newsletter Input Correction */}
               <form className="flex flex-col gap-4 relative group">
                 <input 
                   type="email" 
                   placeholder="Seu Email" 
-                  className="bg-transparent border-b border-white/20 px-0 py-3 text-xs text-white placeholder-gray-700 focus:outline-none focus:border-[#D4AF37] transition-colors w-full"
+                  className="bg-transparent border-b border-white/20 px-0 py-3 text-xs text-white placeholder-gray-700 focus:outline-none focus:border-[#D4AF37] transition-colors w-full autofill:bg-transparent autofill:text-white"
+                  style={{ WebkitBoxShadow: '0 0 0 30px #030303 inset', WebkitTextFillColor: 'white' }}
                 />
                 <button className="absolute right-0 bottom-3 text-[#D4AF37] text-[10px] uppercase tracking-[0.2em] hover:text-white transition-colors opacity-50 group-hover:opacity-100">
                   Assinar
