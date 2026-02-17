@@ -2,25 +2,50 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  body {
-    background-color: #050505 !important;
-    color: #f5f5f5 !important;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
+:root {
+  --gold: #D4AF37;
+  --gold-light: #F4C430;
+  --gold-dark: #AA8C2C;
+  --background: #050505;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: var(--background);
+}
+
+@layer utilities {
+  .text-gold {
+    color: var(--gold);
   }
-}
-
-.glass {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.text-gradient-gold {
-  background: linear-gradient(135deg, #D4AF37 0%, #FFD700 50%, #D4AF37 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  .bg-gold {
+    background-color: var(--gold);
+  }
+  .border-gold {
+    border-color: var(--gold);
+  }
+  .hover\:text-gold:hover {
+    color: var(--gold-light);
+  }
+  .hover\:bg-gold:hover {
+    background-color: var(--gold-light);
+  }
+  .hover\:border-gold:hover {
+    border-color: var(--gold-light);
+  }
+  
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0a0a0a;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--gold-dark);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--gold);
+  }
 }
