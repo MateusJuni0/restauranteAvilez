@@ -3,6 +3,9 @@
 import { motion } from 'framer-motion';
 import { Utensils, Zap, Award } from 'lucide-react';
 import { menus } from '@/data/menus';
+import { useEffect, useRef } from 'react';
+import VanillaTilt from 'vanilla-tilt';
+import Image from 'next/image';
 
 interface MenuItem {
   name: string;
@@ -16,6 +19,26 @@ interface DigitalMenuProps {
 
 export default function DigitalMenu({ restaurantId }: DigitalMenuProps) {
   const menuData = (menus as any)[restaurantId];
+  const tiltRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    // Filter out nulls and apply tilt
+    const elements = tiltRefs.current.filter(Boolean) as HTMLElement[];
+    if (elements.length > 0) {
+      VanillaTilt.init(elements, {
+        max: 15,
+        speed: 400,
+        glare: true,
+        "max-glare": 0.3,
+        scale: 1.05
+      });
+    }
+    
+    // Cleanup
+    return () => {
+      elements.forEach((el: any) => el.vanillaTilt?.destroy());
+    };
+  }, [menuData]);
 
   if (!menuData || Object.keys(menuData).length === 0) {
     return (
@@ -28,40 +51,62 @@ export default function DigitalMenu({ restaurantId }: DigitalMenuProps) {
 
   return (
     <div className="w-full max-w-5xl mx-auto py-12">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-24">
+      <div className="space-y-32">
         {Object.entries(menuData).map(([category, items]: [string, any], catIdx) => (
-          <div key={category} className="space-y-12">
+          <div key={category} className="space-y-16">
             <div className="relative">
-              <h3 className="text-[#D4AF37] font-serif text-3xl md:text-4xl flex items-center gap-4">
-                <Utensils size={28} className="opacity-40" /> {category}
+              <h3 className="text-[#D4AF37] font-serif text-3xl md:text-5xl flex items-center gap-6">
+                <Utensils size={32} className="opacity-60 text-white" /> {category}
               </h3>
-              <div className="absolute -bottom-4 left-0 w-24 h-0.5 bg-[#D4AF37]/30" />
+              <div className="absolute -bottom-6 left-0 w-32 h-0.5 bg-gradient-to-r from-[#D4AF37] to-transparent" />
             </div>
             
-            <div className="space-y-10">
-              {items.map((item: MenuItem, idx: number) => (
-                <motion.div 
-                  key={item.name}
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: idx * 0.05 + catIdx * 0.1 }}
-                  className="group relative"
-                >
-                  <div className="flex justify-between items-baseline mb-2">
-                    <h4 className="text-lg md:text-xl font-medium text-white group-hover:text-[#D4AF37] transition-all duration-300 uppercase tracking-wider font-serif">
-                      {item.name}
-                    </h4>
-                    <div className="flex-grow mx-4 border-b border-white/10 border-dotted" />
-                    <span className="text-[#D4AF37] font-medium">{item.price}</span>
-                  </div>
-                  <p className="text-white/50 text-sm md:text-base leading-relaxed max-w-[95%] italic font-light">
-                    {item.description}
-                  </p>
-                  <div className="absolute -left-8 top-1.5 opacity-0 group-hover:opacity-100 transition-all text-[#D4AF37]">
-                    <Zap size={14} fill="currentColor" />
-                  </div>
-                </motion.div>
-              ))}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {items.map((item: MenuItem, idx: number) => {
+                const globalIndex = catIdx * 10 + idx;
+                return (
+                  <motion.div 
+                    key={item.name}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: idx * 0.1 + catIdx * 0.2 }}
+                    ref={el => { if (el) tiltRefs.current[globalIndex] = el }}
+                    className="group relative bg-white/[0.03] backdrop-blur-md border border-white/5 rounded-xl overflow-hidden shadow-2xl hover:shadow-[0_20px_50px_rgba(212,175,55,0.15)] transition-shadow duration-500 h-full flex flex-col justify-between"
+                    data-tilt
+                    data-tilt-perspective="1000"
+                  >
+                    {/* Dish Image - High Visibility with Fallback Logic */}
+                    <div className="h-48 relative overflow-hidden group-hover:brightness-110 transition-all duration-500">
+                        <img 
+                          src={`/images/${restaurantId}-dish.jpg`}
+                          onError={(e) => {
+                            e.currentTarget.src = `/images/${restaurantId}-hero.jpg`;
+                          }}
+                          alt={item.name}
+                          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60"></div>
+                        <div className="absolute top-4 right-4 bg-[#D4AF37] text-black text-[10px] font-bold px-3 py-1 rounded-sm uppercase tracking-wider shadow-lg z-10">
+                            {item.price}
+                        </div>
+                    </div>
+
+                    <div className="p-8 flex flex-col flex-grow">
+                        <h4 className="text-xl font-serif text-white group-hover:text-[#D4AF37] transition-colors duration-300 uppercase tracking-wide mb-4 leading-snug">
+                          {item.name}
+                        </h4>
+                        <p className="text-white/40 text-sm leading-relaxed font-light italic flex-grow">
+                          {item.description}
+                        </p>
+                        
+                        <div className="mt-8 pt-6 border-t border-white/5 flex justify-between items-center text-[10px] uppercase tracking-[0.2em] text-[#D4AF37]/50 group-hover:text-[#D4AF37] transition-colors">
+                            <span>Recomendado</span>
+                            <Zap size={12} fill="currentColor" />
+                        </div>
+                    </div>
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
         ))}
