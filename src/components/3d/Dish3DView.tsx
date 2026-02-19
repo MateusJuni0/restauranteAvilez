@@ -65,7 +65,7 @@ function DishModel({ imageUrl, name }: { imageUrl: string; name: string }) {
            {/* Aqui poderíamos colocar pequenos glitters dourados flutuando */}
         </mesh>
       </Float>
-    </group> group>
+    </group>
   );
 }
 
