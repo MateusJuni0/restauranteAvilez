@@ -3,7 +3,7 @@
 import { Canvas, useFrame, useLoader } from '@react-three/fiber';
 import { useRef, Suspense, useMemo } from 'react';
 import * as THREE from 'three';
-import { Float, ContactShadows, Environment, PresentationControls, Html } from '@react-three/drei';
+import { Float, PresentationControls, Html } from '@react-three/drei';
 
 // Interface para o componente
 interface Dish3DProps {
@@ -93,9 +93,6 @@ export default function Dish3DView({ imageUrl, name, isActive }: Dish3DProps) {
             <DishModel imageUrl={imageUrl} name={name} />
           </Suspense>
         </PresentationControls>
-
-        <ContactShadows position={[0, -1.5, 0]} opacity={0.4} scale={10} blur={2.5} far={4} />
-        <Environment preset="city" />
       </Canvas>
     </div>
   );
