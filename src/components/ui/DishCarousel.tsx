@@ -10,12 +10,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import dynamic from 'next/dynamic';
-
-const Dish3DView = dynamic(() => import('../3d/Dish3DView'), { 
-  ssr: false,
-  loading: () => <div className="absolute inset-0 bg-black/20 animate-pulse rounded-full" />
-});
+// import Dish3DView from '../3d/Dish3DView'; // Removido em favor de fotos reais de alta qualidade
 
 interface MenuItem {
   name: string;
@@ -26,17 +21,27 @@ interface MenuItem {
 
 // Imagens reais de Fine Dining (Unsplash) para evitar "cara de IA"
 const dishImages: Record<string, string> = {
-  'Peixe': 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?q=80&w=2070&auto=format&fit=crop', // Prato de Peixe Fino
-  'Carne': 'https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=2069&auto=format&fit=crop', // Steak Gourmet
-  'Entrada': 'https://images.unsplash.com/photo-1541014741259-de529411b96a?q=80&w=1974&auto=format&fit=crop', // Entrada Delicada
-  'Sobremesa': 'https://images.unsplash.com/photo-1551024633-59336d6bb175?q=80&w=2069&auto=format&fit=crop', // Sobremesa Michelin
-  'Vegetariano': 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=2080&auto=format&fit=crop', // Vegetais Finos
-  'Default': 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=2070&auto=format&fit=crop' // Prato Chef Genérico
+  'Horta da Galinha dos Ovos de Ouro': 'https://fotos.sapo.pt/soentrenos/fotos/yb29WJewb4LZwvfZaj8Z/original.jpg',
+  'Mergulho no Mar': 'https://fotos.sapo.pt/soentrenos/fotos/2KzVhCzhgVbcErdvJN5o/original.jpg',
+  'Leitão Revisitado': 'https://fotos.sapo.pt/soentrenos/fotos/YKl01bpihOHeCHyf5R1U/original.jpg',
+  'Tangerina': 'https://fotos.sapo.pt/soentrenos/fotos/MhHOu6CHBmPEgM7QN9ND/original.jpg',
+  'Peixe': 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?q=80&w=2070&auto=format&fit=crop',
+  'Carne': 'https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=2069&auto=format&fit=crop',
+  'Entrada': 'https://images.unsplash.com/photo-1541014741259-de529411b96a?q=80&w=1974&auto=format&fit=crop',
+  'Sobremesa': 'https://images.unsplash.com/photo-1551024633-59336d6bb175?q=80&w=2069&auto=format&fit=crop',
+  'Vegetariano': 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=2080&auto=format&fit=crop',
+  'Default': 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=2070&auto=format&fit=crop'
 };
 
 function getImageForCategory(category: string, itemName: string): string {
-  const lowerCat = category.toLowerCase();
   const lowerName = itemName.toLowerCase();
+  
+  if (lowerName.includes('horta')) return dishImages['Horta da Galinha dos Ovos de Ouro'];
+  if (lowerName.includes('mergulho') || lowerName.includes('robalo')) return dishImages['Mergulho no Mar'];
+  if (lowerName.includes('leitão')) return dishImages['Leitão Revisitado'];
+  if (lowerName.includes('tangerina')) return dishImages['Tangerina'];
+  
+  const lowerCat = category.toLowerCase();
   
   if (lowerCat.includes('peixe') || lowerCat.includes('mar') || lowerName.includes('bacalhau') || lowerName.includes('gambas') || lowerName.includes('polvo') || lowerName.includes('carabineiro')) return dishImages['Peixe'];
   if (lowerCat.includes('carne') || lowerName.includes('novilho') || lowerName.includes('porco') || lowerName.includes('bife') || lowerName.includes('leitão')) return dishImages['Carne'];
@@ -98,37 +103,39 @@ export default function DishCarousel({ restaurantId }: { restaurantId: string })
           <SwiperSlide key={`${dish.name}-${idx}`} className="!w-[300px] md:!w-[400px] !h-[400px] md:!h-[500px]">
             {({ isActive }) => (
               <motion.div 
-                className={`relative w-full h-full rounded-2xl overflow-hidden transition-all duration-700 ${isActive ? 'shadow-[0_20px_50px_rgba(212,175,55,0.3)] border border-[#D4AF37]' : 'opacity-40 scale-90 grayscale'}`}
+                className={`relative w-full h-full rounded-2xl overflow-hidden transition-all duration-700 ${isActive ? 'shadow-[0_20px_60px_rgba(0,0,0,0.8)] border border-[#D4AF37]/30 scale-100' : 'opacity-30 scale-90 grayscale contrast-125'}`}
               >
-                {/* 3D View Overly (Reativado com versão Pure Three.js) */}
-                {isActive && restaurantId === 'belcanto' && (
-                  <div className="absolute inset-0 z-[50]">
-                    <Dish3DView 
-                      imageUrl={getImageForCategory(dish.category || '', dish.name)} 
-                      name={dish.name}
-                      isActive={isActive}
-                    />
-                  </div>
-                )}
-
                 {/* Imagem do Prato */}
                 <div 
-                    className={`absolute inset-0 bg-cover bg-center transition-all duration-1000 ${isActive ? 'scale-110 blur-sm brightness-50' : ''}`}
+                    className={`absolute inset-0 bg-cover bg-center transition-all duration-[2000ms] ${isActive ? 'scale-105 blur-0' : 'scale-110 blur-md'}`}
                     style={{ backgroundImage: `url('${getImageForCategory(dish.category || '', dish.name)}')` }}
                 />
                 
-                {/* Overlay Gradiente (apenas se ativo para leitura) */}
-                <div className={`absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent ${isActive ? 'opacity-80' : 'opacity-40'}`} />
+                {/* Overlay Gradiente Editorial */}
+                <div className={`absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent transition-opacity duration-700 ${isActive ? 'opacity-90' : 'opacity-0'}`} />
 
-                {/* Conteúdo dentro do Card (Minimalista) */}
-                <div className={`absolute bottom-0 left-0 right-0 p-8 text-center transform transition-all duration-500 ${isActive ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
-                    <span className="text-[#D4AF37] text-[10px] uppercase tracking-[0.3em] font-bold mb-2 block">{dish.category}</span>
-                    <h3 className="text-2xl md:text-3xl font-serif text-white mb-2 leading-tight">{dish.name}</h3>
-                    <div className="w-12 h-[1px] bg-[#D4AF37] mx-auto my-4" />
-                    <p className="text-white/70 text-sm font-light italic mb-4 line-clamp-2">{dish.description}</p>
-                    <span className="inline-block px-4 py-1 border border-[#D4AF37] text-[#D4AF37] text-sm font-bold tracking-widest uppercase rounded-sm">
+                {/* Conteúdo dentro do Card (Minimalista & Premium) */}
+                <div className={`absolute inset-0 flex flex-col justify-end p-8 text-center transition-all duration-1000 ${isActive ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
+                    <motion.span 
+                      initial={false}
+                      animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+                      className="text-[#D4AF37] text-[10px] uppercase tracking-[0.5em] font-bold mb-3 block"
+                    >
+                      {dish.category}
+                    </motion.span>
+                    <h3 className="text-3xl md:text-4xl font-serif text-white mb-4 leading-tight italic">{dish.name}</h3>
+                    <div className="w-16 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent mx-auto mb-6" />
+                    <p className="text-white/80 text-base font-light italic mb-8 max-w-xs mx-auto leading-relaxed">
+                      "{dish.description}"
+                    </p>
+                    <div className="flex items-center justify-center gap-4">
+                      <span className="text-[#D4AF37] text-xl font-serif">
                         {dish.price}
-                    </span>
+                      </span>
+                      <button className="px-6 py-2 bg-[#D4AF37] text-black text-[10px] font-bold tracking-[0.2em] uppercase rounded-full hover:bg-white transition-colors duration-300">
+                        RESERVAR EXPERIÊNCIA
+                      </button>
+                    </div>
                 </div>
               </motion.div>
             )}
