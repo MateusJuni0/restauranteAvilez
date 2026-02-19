@@ -21,10 +21,10 @@ interface MenuItem {
 
 // Imagens reais de Fine Dining (Unsplash) para evitar "cara de IA"
 const dishImages: Record<string, string> = {
-  'Horta da Galinha dos Ovos de Ouro': '/images/dishes/horta.jpg',
-  'Mergulho no Mar': '/images/dishes/mergulho.jpg',
-  'Leitão Revisitado': '/images/dishes/leitao.jpg',
-  'Tangerina': '/images/dishes/tangerina.jpg',
+  'Horta da Galinha dos Ovos de Ouro': 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=2080&auto=format&fit=crop', // Vegetais Finos / Ovo
+  'Mergulho no Mar': 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?q=80&w=2070&auto=format&fit=crop', // Peixe com Algas
+  'Leitão Revisitado': 'https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=2069&auto=format&fit=crop', // Carne Gourmet
+  'Tangerina': 'https://images.unsplash.com/photo-1551024633-59336d6bb175?q=80&w=2069&auto=format&fit=crop', // Sobremesa Laranja
   'Peixe': 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?q=80&w=2070&auto=format&fit=crop',
   'Carne': 'https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=2069&auto=format&fit=crop',
   'Entrada': 'https://images.unsplash.com/photo-1541014741259-de529411b96a?q=80&w=1974&auto=format&fit=crop',
