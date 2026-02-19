@@ -66,7 +66,7 @@ export default function Home() {
         }`}
       >
         <div className="text-xl md:text-2xl font-serif tracking-[0.25em] text-white uppercase hover:text-[#D4AF37] transition-colors duration-500 cursor-pointer relative group">
-          José <span className="text-[#D4AF37]">Avillez</span>
+          Bairro do <span className="text-[#D4AF37]">Avillez</span>
           <span className="absolute -bottom-2 left-0 w-0 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent group-hover:w-full transition-all duration-700 ease-out"></span>
         </div>
 
@@ -98,7 +98,7 @@ export default function Home() {
             transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
           >
             <h1 className="text-5xl md:text-8xl lg:text-9xl font-serif text-transparent bg-clip-text bg-gradient-to-b from-[#F4C430] via-[#D4AF37] to-[#AA8C2C] tracking-[0.15em] uppercase leading-tight drop-shadow-2xl">
-              José Avillez
+              Bairro do Avillez
             </h1>
           </motion.div>
           
@@ -115,7 +115,7 @@ export default function Home() {
             transition={{ duration: 1.2, delay: 1.2 }}
             className="text-base md:text-2xl text-gray-300 font-light max-w-xl md:max-w-3xl mx-auto font-sans tracking-wide leading-relaxed px-4"
           >
-            "A cozinha é a minha forma de dar."
+            "Onde Lisboa se encontra à mesa."
           </motion.p>
         </div>
 
@@ -127,7 +127,7 @@ export default function Home() {
             className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-4 cursor-pointer group z-30"
             onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
         >
-            <span className="text-[#D4AF37]/70 text-[9px] tracking-[0.4em] uppercase group-hover:text-[#D4AF37] transition-colors duration-500 font-medium">Descobrir</span>
+            <span className="text-[#D4AF37]/70 text-[9px] tracking-[0.4em] uppercase group-hover:text-[#D4AF37] transition-colors duration-500 font-medium pl-[0.4em]">Descobrir</span>
             <div className="w-[1px] h-16 bg-gradient-to-b from-transparent via-[#D4AF37]/40 to-transparent group-hover:via-[#D4AF37] transition-all duration-700"></div>
         </motion.div>
       </section>
@@ -219,7 +219,7 @@ export default function Home() {
           {/* Brand & Newsletter */}
           <div className="lg:col-span-1 space-y-10">
             <div>
-              <span className="text-3xl font-serif tracking-[0.2em] block mb-6 text-white">JOSÉ <span className="text-[#D4AF37]">AVILLEZ</span></span>
+              <span className="text-3xl font-serif tracking-[0.2em] block mb-6 text-white">BAIRRO DO <span className="text-[#D4AF37]">AVILLEZ</span></span>
               <p className="text-[10px] text-gray-500 tracking-[0.25em] leading-loose uppercase font-light">
                 Excelência culinária. <br /> Paixão. Memória.
               </p>
@@ -284,7 +284,7 @@ export default function Home() {
         </div>
 
         <div className="max-w-[1600px] mx-auto mt-32 pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-[9px] text-gray-700 tracking-[0.3em] uppercase font-light">
-            <span className="hover:text-gray-500 transition-colors cursor-default">&copy; {new Date().getFullYear()} Grupo José Avillez.</span>
+            <span className="hover:text-gray-500 transition-colors cursor-default">&copy; {new Date().getFullYear()} Grupo Bairro do Avillez.</span>
             <div className="flex gap-10 mt-6 md:mt-0">
                 <a href="#" className="hover:text-[#D4AF37] transition-colors">Privacidade</a>
                 <a href="#" className="hover:text-[#D4AF37] transition-colors">Termos</a>
