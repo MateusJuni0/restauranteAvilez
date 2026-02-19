@@ -28,14 +28,19 @@ export default function RootLayout({
       <body className={`${inter.variable} ${outfit.variable} ${cormorant.variable} bg-[#050505] text-[#f5f5f5] antialiased selection:bg-[#D4AF37] selection:text-black font-sans cursor-none`}>
         <CustomCursor />
         <SmoothScroll>
-          {/* Subtle Gradient Mesh Background for Depth */}
-          <div className="fixed inset-0 z-[-1] opacity-20 pointer-events-none">
+          {/* Performance Optimized Background Depth */}
+          <div className="fixed inset-0 z-[-1] opacity-20 pointer-events-none overflow-hidden">
             <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-[#D4AF37]/10 blur-[120px]"></div>
             <div className="absolute bottom-[20%] right-[-5%] w-[30%] h-[50%] rounded-full bg-[#AA8C2C]/5 blur-[100px]"></div>
           </div>
 
+          {/* Glass Reflection Overlay */}
+          <div className="fixed inset-0 z-40 pointer-events-none overflow-hidden opacity-30">
+            <div className="absolute top-0 w-[50%] h-full bg-gradient-to-r from-transparent via-white/5 to-transparent skew-x-[-25deg] animate-glass"></div>
+          </div>
+
           {/* Film Grain Texture */}
-          <div className="fixed inset-0 z-50 pointer-events-none opacity-[0.03] bg-[url('https://res.cloudinary.com/dqr68rvcl/image/upload/v1706821217/grain_z0z2z2.png')] mix-blend-overlay"></div>
+          <div className="fixed inset-0 z-50 pointer-events-none opacity-[0.02] bg-[url('https://res.cloudinary.com/dqr68rvcl/image/upload/v1706821217/grain_z0z2z2.png')] mix-blend-overlay"></div>
           
           <div className="relative z-0">
             {children}
