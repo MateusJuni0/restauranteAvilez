@@ -97,11 +97,13 @@ export default function DishCarousel({ restaurantId }: { restaurantId: string })
               >
                 {/* 3D View Overly (Apenas no Belcanto para teste) */}
                 {isActive && restaurantId === 'belcanto' && (
-                  <Dish3DView 
-                    imageUrl={getImageForCategory(dish.category || '', dish.name)} 
-                    name={dish.name}
-                    isActive={isActive}
-                  />
+                  <div className="absolute inset-0 z-[50]">
+                    <Dish3DView 
+                      imageUrl={getImageForCategory(dish.category || '', dish.name)} 
+                      name={dish.name}
+                      isActive={isActive}
+                    />
+                  </div>
                 )}
 
                 {/* Imagem do Prato */}

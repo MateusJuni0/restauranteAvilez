@@ -73,7 +73,7 @@ export default function Dish3DView({ imageUrl, name, isActive }: Dish3DProps) {
   if (!isActive) return null;
 
   return (
-    <div className="absolute inset-0 z-20 pointer-events-none">
+    <div className="absolute inset-0 z-[100] pointer-events-auto">
       <Canvas camera={{ position: [0, 2, 5], fov: 45 }}>
         <ambientLight intensity={0.5} />
         <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={1} />
