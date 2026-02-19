@@ -10,6 +10,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import Dish3DView from '../3d/Dish3DView';
 
 interface MenuItem {
   name: string;
@@ -94,6 +95,15 @@ export default function DishCarousel({ restaurantId }: { restaurantId: string })
               <motion.div 
                 className={`relative w-full h-full rounded-2xl overflow-hidden transition-all duration-700 ${isActive ? 'shadow-[0_20px_50px_rgba(212,175,55,0.3)] border border-[#D4AF37]' : 'opacity-40 scale-90 grayscale'}`}
               >
+                {/* 3D View Overly (Apenas no Belcanto para teste) */}
+                {isActive && restaurantId === 'belcanto' && (
+                  <Dish3DView 
+                    imageUrl={getImageForCategory(dish.category || '', dish.name)} 
+                    name={dish.name}
+                    isActive={isActive}
+                  />
+                )}
+
                 {/* Imagem do Prato */}
                 <div 
                     className="absolute inset-0 bg-cover bg-center transition-transform duration-1000"
