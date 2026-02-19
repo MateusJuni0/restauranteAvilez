@@ -20,19 +20,19 @@ interface MenuItem {
 
 // Imagens reais de Fine Dining (Unsplash) para evitar "cara de IA"
 const dishImages: Record<string, string> = {
-  'Peixe': 'https://images.unsplash.com/photo-1534939561126-855f86654015?q=80&w=800&auto=format&fit=crop', // Prato de Peixe Fino
-  'Carne': 'https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=800&auto=format&fit=crop', // Steak Gourmet
-  'Entrada': 'https://images.unsplash.com/photo-1626074353765-517a681e40be?q=80&w=800&auto=format&fit=crop', // Entrada Delicada
-  'Sobremesa': 'https://images.unsplash.com/photo-1551024506-0bccd828d307?q=80&w=800&auto=format&fit=crop', // Sobremesa Michelin
-  'Vegetariano': 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=800&auto=format&fit=crop', // Vegetais Finos
-  'Default': 'https://images.unsplash.com/photo-1550966871-3ed3c47e2ce2?q=80&w=800&auto=format&fit=crop' // Prato Chef Genérico
+  'Peixe': 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?q=80&w=2070&auto=format&fit=crop', // Prato de Peixe Fino
+  'Carne': 'https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=2069&auto=format&fit=crop', // Steak Gourmet
+  'Entrada': 'https://images.unsplash.com/photo-1541014741259-de529411b96a?q=80&w=1974&auto=format&fit=crop', // Entrada Delicada
+  'Sobremesa': 'https://images.unsplash.com/photo-1551024633-59336d6bb175?q=80&w=2069&auto=format&fit=crop', // Sobremesa Michelin
+  'Vegetariano': 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=2080&auto=format&fit=crop', // Vegetais Finos
+  'Default': 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=2070&auto=format&fit=crop' // Prato Chef Genérico
 };
 
 function getImageForCategory(category: string, itemName: string): string {
   const lowerCat = category.toLowerCase();
   const lowerName = itemName.toLowerCase();
   
-  if (lowerCat.includes('peixe') || lowerCat.includes('mar') || lowerName.includes('bacalhau') || lowerName.includes('gambas') || lowerName.includes('polvo')) return dishImages['Peixe'];
+  if (lowerCat.includes('peixe') || lowerCat.includes('mar') || lowerName.includes('bacalhau') || lowerName.includes('gambas') || lowerName.includes('polvo') || lowerName.includes('carabineiro')) return dishImages['Peixe'];
   if (lowerCat.includes('carne') || lowerName.includes('novilho') || lowerName.includes('porco') || lowerName.includes('bife') || lowerName.includes('leitão')) return dishImages['Carne'];
   if (lowerCat.includes('sobremesa') || lowerCat.includes('doce') || lowerName.includes('chocolate') || lowerName.includes('gelado')) return dishImages['Sobremesa'];
   if (lowerCat.includes('entrada') || lowerCat.includes('petisco') || lowerName.includes('tosta')) return dishImages['Entrada'];
