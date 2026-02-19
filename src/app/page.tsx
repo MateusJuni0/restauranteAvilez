@@ -183,20 +183,25 @@ export default function Home() {
                 />
                 
                 {/* Overlay Gradient (Gold Hint) */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent opacity-90 transition-opacity duration-700 group-hover:opacity-95"></div>
-                <div className="absolute inset-0 bg-[#D4AF37]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 mix-blend-overlay"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90 transition-opacity duration-700 group-hover:opacity-95"></div>
+                <div className="absolute inset-0 bg-gradient-to-tr from-[#D4AF37]/5 via-transparent to-[#D4AF37]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
                 
+                {/* Glass Shine Effect */}
+                <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden">
+                  <div className="absolute top-0 left-[-150%] w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-[-25deg] group-hover:left-[150%] transition-all duration-[1.5s] ease-in-out"></div>
+                </div>
+
                 {/* Content */}
                 <div className="absolute inset-0 p-10 md:p-14 flex flex-col justify-end items-start text-left z-20">
-                  <span className="text-[#D4AF37] text-[9px] tracking-[0.4em] uppercase mb-5 opacity-0 transform -translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-700 delay-100 border-b border-[#D4AF37]/30 pb-2">
+                  <span className="text-[#D4AF37] text-[9px] tracking-[0.4em] uppercase mb-5 opacity-80 transform group-hover:scale-110 transition-all duration-700 border-b border-[#D4AF37]/30 pb-2">
                     {restaurant.location}
                   </span>
                   
-                  <h3 className="text-3xl md:text-4xl font-serif text-white tracking-[0.1em] uppercase mb-6 group-hover:text-[#D4AF37] transition-colors duration-500 drop-shadow-lg">
+                  <h3 className="text-3xl md:text-4xl font-serif text-white tracking-[0.1em] uppercase mb-6 group-hover:text-[#D4AF37] transition-colors duration-500 drop-shadow-[0_5px_15px_rgba(0,0,0,0.8)]">
                     {restaurant.name}
                   </h3>
                   
-                  <div className="h-[1px] w-16 bg-white/20 mb-8 group-hover:w-24 group-hover:bg-[#D4AF37] transition-all duration-1000 ease-out"></div>
+                  <div className="h-[1px] w-12 bg-[#D4AF37]/30 mb-8 group-hover:w-24 group-hover:bg-[#D4AF37] transition-all duration-1000 ease-out shadow-[0_0_10px_rgba(212,175,55,0.5)]"></div>
                   
                   <p className="text-sm text-gray-400 leading-relaxed mb-10 font-light tracking-wide max-w-md opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-700 delay-200">
                     {restaurant.desc.pt}
