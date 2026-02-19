@@ -20,6 +20,9 @@ export default function RestaurantPage() {
     Object.values(restaurants).find(r => r.id === slug) ||
     Object.values(restaurants).find(r => r.href === `/${slug}`);
   
+  // Fallback Image Logic
+  const heroImage = restaurant?.image || "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=2070";
+
   const { scrollY } = useScroll();
   const opacity = useTransform(scrollY, [0, 400], [1, 0]);
   const y = useTransform(scrollY, [0, 400], [0, 150]);
@@ -42,7 +45,7 @@ export default function RestaurantPage() {
       <section className="relative h-[100vh] w-full flex items-center justify-center overflow-hidden">
         <motion.div style={{ y }} className="absolute inset-0 z-0">
           <Image
-            src={restaurant.image}
+            src={heroImage}
             alt={restaurant.name.pt}
             fill
             className="object-cover brightness-[0.4] scale-110"
@@ -123,14 +126,19 @@ export default function RestaurantPage() {
               <div className="lg:col-span-1 hidden lg:block"></div>
 
               <div className="lg:col-span-6">
-                 <div className="relative h-[400px] w-full rounded-sm overflow-hidden shadow-2xl group">
+                 <div className="relative h-[400px] w-full rounded-2xl overflow-hidden shadow-[0_0_40px_rgba(212,175,55,0.15)] group border border-[#D4AF37]/20">
                     <Image 
-                      src={restaurant.image} 
+                      src={heroImage} 
                       alt="Experiência" 
                       fill 
-                      className="object-cover transition-transform duration-[2s] group-hover:scale-105"
+                      className="object-cover transition-transform duration-[2s] group-hover:scale-110"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60"></div>
+                    
+                    {/* Glass shine on the intro image */}
+                    <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden">
+                       <div className="absolute top-0 left-[-150%] w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-[-25deg] group-hover:left-[150%] transition-all duration-[2s] ease-in-out"></div>
+                    </div>
                  </div>
               </div>
            </div>
@@ -138,11 +146,11 @@ export default function RestaurantPage() {
            {/* 3D CAROUSEL SECTION */}
            <div id="ementa" className="border-t border-white/5 pt-32 pb-40">
               <div className="flex flex-col items-center mb-24 text-center">
-                 <span className="text-[#D4AF37] text-[10px] uppercase tracking-[0.6em] font-bold mb-6 block animate-pulse">Degustação Virtual</span>
-                 <h3 className="text-5xl md:text-7xl font-serif text-white tracking-tight uppercase">
-                    A Ementa
+                 <span className="text-[#D4AF37] text-[10px] uppercase tracking-[0.8em] font-bold mb-6 block animate-pulse">Degustação Virtual</span>
+                 <h3 className="text-6xl md:text-8xl font-serif text-white tracking-tight uppercase">
+                    A <span className="text-[#D4AF37] italic">Ementa</span>
                  </h3>
-                 <div className="w-24 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent mt-8"></div>
+                 <div className="w-32 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent mt-10 shadow-[0_0_10px_#D4AF37]"></div>
               </div>
               
               <DishCarousel restaurantId={slug as string} />
