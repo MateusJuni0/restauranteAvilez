@@ -8,7 +8,7 @@ const outfit = Outfit({ subsets: ['latin'], variable: '--font-outfit' });
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-serif' });
 
 export const metadata: Metadata = {
-  title: "Bairro do Avillez | José Avillez",
+  title: "Bairro do Avillez | Gastronomia em Lisboa",
   description: "Experiência gastronómica única no coração de Lisboa - Hub Gastronómico de Elite",
 };
 

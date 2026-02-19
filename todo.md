@@ -1,13 +1,17 @@
-# TODO: Site José Avillez
+# TODO: Site José Avillez - Upgrade V2
 
-## Estado Atual (Checkpoint 14/02/2026)
-- **Design:** Identidade visual "Michelin-Star" implementada.
-- **Background:** PortalMain com efeito Ken Burns e imagem gastronômica premium.
-- **Tipografia:** Playfair Display para títulos, Inter/Outfit para corpo.
-- **Mobile:** Responsividade ajustada para Hero e Grid.
-- **Footer:** Layout de 4 colunas (Marca, Localizações, Contactos, Social) finalizado.
+## Status Atual
+**Branch:** `feature/upgrade-v2` (Protegida)
+**Objetivo:** Refinamento Premium e Expansão de Conteúdo
 
-## Próximos Passos
+## Fila de Prioridades (Upgrade V2)
+- [ ] **Auditoria de Design:** Revisar Hero Section para impacto máximo "Michelin".
+- [ ] **Conteúdo Real:** Substituir placeholders por textos e imagens definitivos (Scraping ou Upload).
+- [ ] **SEO Técnico:** Configurar Metadata, OpenGraph e Sitemap.
+- [ ] **Performance:** Otimizar imagens (WebP/AVIF) e Lazy Loading.
+- [ ] **Menu Digital:** Criar página `/menu` interativa (não PDF).
+
+## Backlog (Versão Anterior)
 - [ ] Substituir imagens genéricas do Unsplash por fotos reais do Bairro do Avillez/Belcanto.
 - [ ] Implementar sistema de reservas real (integrar com API ou formulário).
 - [ ] Adicionar sub-páginas para cada restaurante (`/belcanto`, `/bairro-do-avillez`).
