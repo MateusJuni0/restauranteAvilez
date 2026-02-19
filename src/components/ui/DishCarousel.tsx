@@ -10,7 +10,12 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import Dish3DView from '../3d/Dish3DView';
+import dynamic from 'next/dynamic';
+
+const Dish3DView = dynamic(() => import('../3d/Dish3DView'), { 
+  ssr: false,
+  loading: () => <div className="absolute inset-0 bg-black/20 animate-pulse rounded-full" />
+});
 
 interface MenuItem {
   name: string;

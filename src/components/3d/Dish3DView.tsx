@@ -1,9 +1,9 @@
 'use client';
 
 import { Canvas, useFrame, useLoader } from '@react-three/fiber';
-import { useRef, Suspense, useMemo } from 'react';
+import { useRef, Suspense } from 'react';
 import * as THREE from 'three';
-import { Float, PresentationControls, Html } from '@react-three/drei';
+import { Float, PresentationControls } from '@react-three/drei';
 
 // Interface para o componente
 interface Dish3DProps {
