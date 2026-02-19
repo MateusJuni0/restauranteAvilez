@@ -21,10 +21,10 @@ interface MenuItem {
 
 // Imagens reais de Fine Dining (Unsplash) para evitar "cara de IA"
 const dishImages: Record<string, string> = {
-  'Horta da Galinha dos Ovos de Ouro': 'https://fotos.sapo.pt/soentrenos/fotos/yb29WJewb4LZwvfZaj8Z/original.jpg',
-  'Mergulho no Mar': 'https://fotos.sapo.pt/soentrenos/fotos/2KzVhCzhgVbcErdvJN5o/original.jpg',
-  'Leitão Revisitado': 'https://fotos.sapo.pt/soentrenos/fotos/YKl01bpihOHeCHyf5R1U/original.jpg',
-  'Tangerina': 'https://fotos.sapo.pt/soentrenos/fotos/MhHOu6CHBmPEgM7QN9ND/original.jpg',
+  'Horta da Galinha dos Ovos de Ouro': '/images/dishes/horta.jpg',
+  'Mergulho no Mar': '/images/dishes/mergulho.jpg',
+  'Leitão Revisitado': '/images/dishes/leitao.jpg',
+  'Tangerina': '/images/dishes/tangerina.jpg',
   'Peixe': 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?q=80&w=2070&auto=format&fit=crop',
   'Carne': 'https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=2069&auto=format&fit=crop',
   'Entrada': 'https://images.unsplash.com/photo-1541014741259-de529411b96a?q=80&w=1974&auto=format&fit=crop',
