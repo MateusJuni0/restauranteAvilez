@@ -127,7 +127,7 @@ export default function Home() {
             className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-4 cursor-pointer group z-30"
             onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
         >
-            <span className="text-[#D4AF37]/70 text-[9px] tracking-[0.4em] uppercase group-hover:text-[#D4AF37] transition-colors duration-500 font-medium pl-[0.4em]">Descobrir</span>
+            <span className="text-[#D4AF37]/70 text-[9px] tracking-[0.4em] uppercase group-hover:text-[#D4AF37] transition-colors duration-500 font-medium mr-[-0.4em] animate-pulse">Descobrir</span>
             <div className="w-[1px] h-16 bg-gradient-to-b from-transparent via-[#D4AF37]/40 to-transparent group-hover:via-[#D4AF37] transition-all duration-700"></div>
         </motion.div>
       </section>
