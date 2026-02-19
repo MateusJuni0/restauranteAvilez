@@ -113,7 +113,7 @@ export default function DishCarousel({ restaurantId }: { restaurantId: string })
 
                 {/* Imagem do Prato */}
                 <div 
-                    className="absolute inset-0 bg-cover bg-center transition-transform duration-1000"
+                    className={`absolute inset-0 bg-cover bg-center transition-all duration-1000 ${isActive ? 'scale-110 blur-sm brightness-50' : ''}`}
                     style={{ backgroundImage: `url('${getImageForCategory(dish.category || '', dish.name)}')` }}
                 />
                 
