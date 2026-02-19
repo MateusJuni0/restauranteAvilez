@@ -46,7 +46,7 @@ export default function RestaurantPage() {
         <motion.div style={{ y }} className="absolute inset-0 z-0">
           <Image
             src={heroImage}
-            alt={restaurant.name.pt}
+            alt={restaurant.name}
             fill
             className="object-cover brightness-[0.4] scale-110"
             priority
@@ -69,10 +69,10 @@ export default function RestaurantPage() {
             transition={{ duration: 1.2 }}
           >
             <span className="text-[#D4AF37] text-[10px] uppercase tracking-[0.8em] font-bold mb-8 block">
-              {restaurant.specialty.pt}
+              {(restaurant.specialty as any).pt}
             </span>
             <h1 className="text-5xl md:text-8xl lg:text-[10rem] font-serif leading-none mb-12 text-white tracking-tighter drop-shadow-2xl">
-              {restaurant.name.pt}
+              {restaurant.name}
             </h1>
             <div className="flex items-center justify-center gap-8 text-[10px] uppercase tracking-[0.4em] font-medium text-white/40">
                <span>Lisboa</span>
@@ -98,7 +98,7 @@ export default function RestaurantPage() {
               <div className="lg:col-span-5 space-y-12">
                  <h2 className="text-4xl md:text-5xl font-serif leading-tight">Uma narrativa <br/><span className="text-[#D4AF37] italic">gastronómica.</span></h2>
                  <p className="text-lg text-white/40 font-light leading-relaxed">
-                   O {restaurant.name.pt} não é apenas um restaurante, é um capítulo da visão do Chef José Avillez sobre a alma portuguesa. Descubra uma curadoria de sabores que respeita o passado mas olha para o futuro.
+                   O {restaurant.name} não é apenas um restaurante, é um capítulo da visão do Chef José Avillez sobre a alma portuguesa. Descubra uma curadoria de sabores que respeita o passado mas olha para o futuro.
                  </p>
                  <div className="space-y-6 pt-8">
                     <a href="https://maps.google.com" target="_blank" className="flex items-center gap-6 group cursor-pointer hover:opacity-80 transition-opacity">
