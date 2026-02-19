@@ -1,6 +1,9 @@
 # TODO: Site José Avillez - Upgrade V2
 
 ## Status Atual
+- [x] Corrigir erro de sintaxe no Dish3DView.tsx (Build Vercel Fix)
+- [x] Ajustar transpilePackages no next.config.mjs para Three.js
+- [x] Push realizado para GitHub (Branch main)
 **Branch:** `feature/upgrade-v2` (Protegida)
 **Objetivo:** Refinamento Premium e Expansão de Conteúdo
 

@@ -15,8 +15,10 @@ interface Dish3DProps {
 function DishModel({ imageUrl, name }: { imageUrl: string; name: string }) {
   const meshRef = useRef<THREE.Mesh>(null!);
   
-  // Carrega a textura da imagem do prato
-  const texture = useLoader(THREE.TextureLoader, imageUrl);
+  // Carrega a textura da imagem do prato com tratamento de CORS
+  const texture = useLoader(THREE.TextureLoader, imageUrl, (loader) => {
+    loader.setCrossOrigin('anonymous');
+  });
   
   // Criamos uma geometria de "Prato" (Cilindro muito baixo ou Disco)
   // Para o efeito "abrir em 3D", vamos usar um disco com a foto em cima e uma borda dourada
